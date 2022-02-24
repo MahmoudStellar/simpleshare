@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "472443843151",
+    "project_id": "simpleshare-1",
+    "storage_bucket": "simpleshare-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472443843151:android:299fee7ac46067087a703a",
+        "android_client_info": {
+          "package_name": "com.mahmoudstellar.simpleshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472443843151-nnt8de5ska0f80tq88nj53dh53q5af7k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mahmoudstellar.simpleshare",
+            "certificate_hash": "0c2f8ac39477552a6315fefa2190871e863c1385"
+          }
+        },
+        {
+          "client_id": "472443843151-mk20e2hh6ri6nd0vfm6512f7hphmu593.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0e8gknSUF2iikVHg7RHqMXnf-qZfsq7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472443843151-mk20e2hh6ri6nd0vfm6512f7hphmu593.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "472443843151-4r52hdopf2kj5nj5u6tgfn3pqcc07ct2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mahmoudstellar.simpleshare"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
