@@ -1,14 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:simpleshare/pages/activity_feed.dart';
+import 'package:simpleshare/pages/create_account.dart';
 import 'package:simpleshare/pages/profile.dart';
 import 'package:simpleshare/pages/search.dart';
-import 'package:simpleshare/pages/timeline.dart';
+// import 'package:simpleshare/pages/timeline.dart';
 import 'package:simpleshare/pages/upload.dart';
 
-final GoogleSignIn googleSignIn = GoogleSignIn();
+final googleSignIn = GoogleSignIn();
+final usersRef = Firestore.instance.collection('users');
+final timestamp = DateTime.now();
 
 class Home extends StatefulWidget {
   @override
@@ -47,6 +50,7 @@ class _HomeState extends State<Home> {
   handleSignIn(GoogleSignInAccount account) {
     if (account != null) {
       print('User signed in!:$account');
+      createUserInFirestore();
       setState(() {
         isAuth = true;
       });
@@ -63,6 +67,29 @@ class _HomeState extends State<Home> {
 
   logout() {
     googleSignIn.signOut();
+  }
+
+  createUserInFirestore() async {
+    // 1) check if user exists in users collection in database (according to their id)
+    final GoogleSignInAccount user = googleSignIn.currentUser;
+    final DocumentSnapshot doc = await usersRef.document(user.id).get();
+
+    if (!doc.exists) {
+      // 2) if the user doesn't exist, then we want to take them to the create account page
+      final username = await Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CreateAccount()));
+
+      // 3) get username from create account, use it to make new user document in users collection
+      usersRef.document(user.id).setData({
+        "id": user.id,
+        "username": username,
+        "photoUrl": user.photoUrl,
+        "email": user.email,
+        "displayName": user.displayName,
+        "bio": "",
+        "timestamp": timestamp
+      });
+    }
   }
 
   onPageChanged(int pageIndex) {
@@ -85,7 +112,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: PageView(
         children: <Widget>[
-          Timeline(),
+          // Timeline(),
+          ElevatedButton(onPressed: logout, child: Text("logout")),
           ActivityFeed(),
           Upload(),
           Search(),
