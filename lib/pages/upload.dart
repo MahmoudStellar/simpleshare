@@ -74,7 +74,7 @@ class _UploadState extends State<Upload>
 
   Container buildSplashScreen() {
     return Container(
-      color: Theme.of(context).accentColor.withOpacity(0.6),
+      color: Theme.of(context).colorScheme.secondary.withOpacity(0.6),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
